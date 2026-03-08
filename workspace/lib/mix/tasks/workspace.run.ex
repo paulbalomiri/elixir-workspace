@@ -314,7 +314,7 @@ defmodule Mix.Tasks.Workspace.Run do
   @recursive true
 
   import Workspace.Cli
-
+  def schema(), do:  @options_schema
   @impl Mix.Task
   def run(args) do
     Mix.Task.reenable("workspace.run")
