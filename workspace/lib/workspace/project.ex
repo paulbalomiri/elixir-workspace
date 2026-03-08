@@ -216,6 +216,7 @@ defmodule Workspace.Project do
       status: Atom.to_string(project.status),
       root: project.root?,
       changes: changes,
+      version: project.version,
       tags: Enum.map(project.tags, &format_tag/1)
     }
   end
