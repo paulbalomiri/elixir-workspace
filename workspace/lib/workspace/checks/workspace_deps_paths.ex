@@ -59,7 +59,9 @@ defmodule Workspace.Checks.WorkspaceDepsPaths do
 
     Path.relative_to(dependency_path, project_path, force: true)
   end
-
+  
+  defp sanitize(nil), do: nil
+  
   defp sanitize(path) do
     path |> Path.split() |> Path.join()
   end
