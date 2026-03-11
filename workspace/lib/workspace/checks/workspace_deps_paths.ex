@@ -46,7 +46,11 @@ defmodule Workspace.Checks.WorkspaceDepsPaths do
     deps
     |> Enum.filter(fn dep -> workspace_project?(dep, workspace) end)
     # TODO: this expects a keyword list, make it more robust in case it is an absolute version
-    |> Enum.map(fn {app, opts} -> {app, opts[:path]} end)
+    |> Enum.map(fn
+      {app, opts} -> {app, opts[:path]}
+      {app, _requirement, opts} -> {app, opts[:path]}
+      app when is_atom(app) -> {app, nil}
+    end)
   end
 
   defp expected_path(project, workspace, app) do
